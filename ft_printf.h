@@ -13,9 +13,9 @@
 typedef struct s_mask
 {
 	bool			alternative_mode : 1;
-	bool			left_justified : 1;
+	bool			left_align : 1;
 	bool			zero_padding : 1;
-	bool			free_space : 1;
+	bool			frnt_spc : 1;
 	bool			print_sign : 1;
 	bool			uppercase : 1;
 	bool			is_negative : 1;
@@ -30,7 +30,7 @@ typedef struct s_str_wrapper
 {
 	intmax_t	f_sym_amnt;
 	intmax_t	b_sym_amnt;
-	char		sym;
+	char		padding_sym;
 	char		sign[2];
 }				t_str_wrapper;
 

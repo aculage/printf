@@ -2,10 +2,10 @@
 
 int main()
 {
-    int a;
+    double a;
     
-    a = 12;
-    printf("%12.5d", a);
+    a = 12.12345;
+    printf("%-#12.5f", a);
 
     return 0;
 }
