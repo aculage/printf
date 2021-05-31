@@ -3,7 +3,7 @@
 
 //Extracts a decimal value.
 //This is used for precision or width.
-bool	extract_val(const char *str, int *shft, int *val)
+static bool	extract_val(const char *str, int *shft, int *val)
 {
 	int	get;
 
@@ -12,12 +12,19 @@ bool	extract_val(const char *str, int *shft, int *val)
 	*shft = 0;
 	get = 0;
 	while (ft_isdigit(*(str + *shft)))
+	{
 		get = get * 10 + (*(str + *shft) - '0');
+		*shft++;
+	}
+	*val = get;
+	if (get != 0)
+		return (true);
+	return (false);
 }
 
 //Extracts a flag.
 //Sets it into the wrapper structure.
-bool	extract_flag(const char *str, t_mask *mask)
+static bool	extract_flag(const char *str, t_mask *mask)
 {
 	if (*str == '#')
 		mask->alternative_mode = true;
@@ -28,23 +35,44 @@ bool	extract_flag(const char *str, t_mask *mask)
 	else if (*str == ' ' && !(mask->print_sign))
 		mask->frnt_spc = true;
 	else if (*str == '0' && !(mask->left_align))
-	{
 		mask->wrapper.padding_sym = '0';
-		mask->zero_padding = true;
-	}
 	else
 		return (false);
 	return (true);
 }
-//Extracts length modifier (e.g. l, ll, h, hh)
-bool	extract_length(const char *str, int *shft, t_mask *mask)
-{
 
+//Extracts length modifier (e.g. l, ll, h, hh)
+static bool	extract_length(const char *str, int *shft, t_mask *mask)
+{
+	*shft = 0;
+	if (*(str + *shft) == 'l')
+	{
+		*shft++;
+		mask->length.l = true;
+		if (*(str + *shft) == 'l')
+		{
+			*shft++;
+			mask->length.ll = true;
+		}
+		return (true);
+	}
+	if (*(str + *shft) == 'h')
+	{
+		*shft++;
+		mask->length.h = true;
+		if (*(str + *shft) == 'h')
+		{
+			*shft++;
+			mask->length.hh = true;
+		}
+		return (true);
+	}
+	return (false);
 }
 
-bool	extract_specifier(const char *str, t_mask *mask)
+static bool	extract_specifier(const char *str, t_mask *mask)
 {
-
+	if ()
 }
 
 //Marshals the fromat string into a structure.
