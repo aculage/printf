@@ -10,22 +10,6 @@
 # include <wchar.h>
 # include <limits.h>
 
-typedef struct s_mask
-{
-	bool		alternative_mode : 1;
-	bool		left_align : 1;
-	bool		frnt_spc : 1;
-	bool		print_sign : 1;
-	bool		uppercase : 1;
-	bool		is_negative : 1;
-	int32_t		width;
-	int32_t		precision;
-	int32_t		symbols_printed;
-	char		specifier;
-	t_wrapper	wrapper;
-	t_length	length;
-}				t_mask;
-
 typedef struct s_wrapper
 {
 	intmax_t	f_sym_amnt;
@@ -42,8 +26,26 @@ typedef struct s_length
 	bool		hh : 1;
 }				t_length;
 
+typedef struct s_mask
+{
+	bool		alternative_mode : 1;
+	bool		left_align : 1;
+	bool		frnt_spc : 1;
+	bool		print_sign : 1;
+	bool		uppercase : 1;
+	bool		is_negative : 1;
+	int32_t		width;
+	int32_t		precision;
+	int32_t		symbols_printed;
+	char		specifier;
+	t_wrapper	wrapper;
+	t_length	length;
+}				t_mask;
+
 int ft_printf(const char *, ...);
 
 int ft_printcontent(const char *, int, int);
+
+bool	ft_marshal_format(const char *frmt_str, t_mask *mask);
 
 #endif

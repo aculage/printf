@@ -1,11 +1,12 @@
 #include <stdio.h>
+#include "ft_printf.h"
 
 int main()
 {
-    double a;
+    int a;
     
-    a = 12.12345;
-    printf("%-#12.5f", a);
-
+    a = 121212;
+    printf("%-12.5d", a);
+	ft_printf("%-12.5d", a);	
     return 0;
 }

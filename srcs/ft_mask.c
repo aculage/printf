@@ -14,7 +14,7 @@ static bool	extract_val(const char *str, int *shft, int *val)
 	while (ft_isdigit(*(str + *shft)))
 	{
 		get = get * 10 + (*(str + *shft) - '0');
-		*shft++;
+		(*shft)++;
 	}
 	*val = get;
 	if (get != 0)
@@ -47,22 +47,22 @@ static bool	extract_length(const char *str, int *shft, t_mask *mask)
 	*shft = 0;
 	if (*(str + *shft) == 'l')
 	{
-		*shft++;
+		(*shft)++;
 		mask->length.l = true;
 		if (*(str + *shft) == 'l')
 		{
-			*shft++;
+			(*shft)++;
 			mask->length.ll = true;
 		}
 		return (true);
 	}
 	if (*(str + *shft) == 'h')
 	{
-		*shft++;
+		(*shft)++;
 		mask->length.h = true;
 		if (*(str + *shft) == 'h')
 		{
-			*shft++;
+			(*shft)++;
 			mask->length.hh = true;
 		}
 		return (true);
@@ -72,7 +72,19 @@ static bool	extract_length(const char *str, int *shft, t_mask *mask)
 
 static bool	extract_specifier(const char *str, t_mask *mask)
 {
-	if ()
+	char	*specs;
+
+	specs = "cspdiuxXn%";
+	if (ft_strchr(specs, *str))
+	{
+		mask->specifier = *str;
+		return (true);
+	}
+	else
+	{
+		mask->specifier = 0;
+		return (false);
+	}
 }
 
 //Marshals the fromat string into a structure.
@@ -97,7 +109,9 @@ bool	ft_marshal_format(const char *frmt_str, t_mask *mask)
 		else if (extract_length(frmt_str + shft, &add, mask))
 			shft += add;
 		else if (extract_specifier(frmt_str + shft, mask))
+		{
 			return (true);
+		}
 	}
 	return (false);
 }

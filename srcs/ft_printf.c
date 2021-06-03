@@ -13,6 +13,7 @@ int	ft_printcontent(const char *str, int bound, int fd)
 	else
 		amnt = bound;
 	write (fd, str, amnt);
+	return (amnt);
 }
 
 int	print_till_percent(const char *str, int fd)
@@ -25,12 +26,7 @@ int	print_till_percent(const char *str, int fd)
 		shft++;
 	}
 	write(fd, str, shft);
-}
-
-//Marshals the fromat string into a structure.
-void	ft_marshal_format(const char *frmt_str, t_mask *mask)
-{
-	
+	return (shft);
 }
 
 //Tries to find a percent sign and then call 
@@ -42,6 +38,7 @@ int	fstr_streamline(t_mask *mask, const char *frmt_str, int fd)
 	int	prev_pos;
 
 	prev_pos = 0;
+	curr_pos = 0;
 	while (*(frmt_str + curr_pos) != 0)
 	{
 		curr_pos = prev_pos + print_till_percent(frmt_str + prev_pos, fd);
@@ -51,6 +48,16 @@ int	fstr_streamline(t_mask *mask, const char *frmt_str, int fd)
 		}
 		prev_pos = curr_pos;
 	}
+	return (0);
+}
+
+int	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
+{
+	t_mask fstr_wrpr;
+
+	(void) arg_list;
+	fstr_streamline(&fstr_wrpr, frmt_str, fd);
+	return (0);
 }
 
 int ft_printf(const char *frmt_str, ...)
@@ -62,11 +69,4 @@ int ft_printf(const char *frmt_str, ...)
 	ret = ft_fprintf(frmt_str, &arg_list, 1);
 	va_end(arg_list);
 	return(ret);
-}
-
-int	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
-{
-	struct s_str_wrapper fstr_wrpr;
-
-	fstr_interpret(fstr_interpret, format_str);
 }
