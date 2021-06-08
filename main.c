@@ -7,6 +7,6 @@ int main()
     
     a = 121212;
     printf("%-12.5d", a);
-	ft_printf("%-12.5d", a);	
+	ft_printf("%-12.5d", a);
     return 0;
 }

@@ -16,9 +16,11 @@ static bool	extract_val(const char *str, int *shft, int *val)
 		get = get * 10 + (*(str + *shft) - '0');
 		(*shft)++;
 	}
-	*val = get;
 	if (get != 0)
+	{
+		*val = get;
 		return (true);
+	}
 	return (false);
 }
 
@@ -100,7 +102,7 @@ bool	ft_marshal_format(const char *frmt_str, t_mask *mask)
 			shft++;
 		else if (extract_val(frmt_str + shft, &add, &(mask->width)))
 			shft += add;
-		else if (*(frmt_str) + shft == '.')
+		else if (*(frmt_str + shft) == '.')
 		{
 			shft++;
 			extract_val(frmt_str + shft, &add, &(mask->precision));

@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	init_wrapper(t_wrapper *wrapper)
+static void	init_wrapper(t_wrapper *wrapper)
 {
 	wrapper->b_sym_amnt = 0;
 	wrapper->f_sym_amnt = 0;
@@ -9,7 +9,7 @@ void	init_wrapper(t_wrapper *wrapper)
 	wrapper->sign[1] = 1;
 }
 
-void	init_length(t_length *length)
+static void	init_length(t_length *length)
 {
 	length->h = false;
 	length->hh = false;

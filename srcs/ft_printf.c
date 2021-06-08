@@ -44,6 +44,7 @@ int	fstr_streamline(t_mask *mask, const char *frmt_str, int fd)
 		curr_pos = prev_pos + print_till_percent(frmt_str + prev_pos, fd);
 		if (*(frmt_str + curr_pos) == '%')
 		{
+			init_mask(mask);
 			ft_marshal_format(frmt_str + curr_pos, mask);
 		}
 		prev_pos = curr_pos;

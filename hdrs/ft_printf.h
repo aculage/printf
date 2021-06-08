@@ -48,4 +48,6 @@ int ft_printcontent(const char *, int, int);
 
 bool	ft_marshal_format(const char *frmt_str, t_mask *mask);
 
+void	init_mask(t_mask *mask);
+
 #endif
