@@ -46,8 +46,7 @@ int ft_printf(const char *, ...);
 
 int ft_printcontent(const char *, int, int);
 
-bool	ft_marshal_format(const char *frmt_str, t_mask *mask);
+bool	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list);
 
 void	init_mask(t_mask *mask);
-
 #endif

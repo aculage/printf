@@ -3,13 +3,19 @@
 
 //Extracts a decimal value.
 //This is used for precision or width.
-static bool	extract_val(const char *str, int *shft, int *val)
+static bool	extract_val(const char *str, int *shft, va_list *arg_list, int *val)
 {
 	int	get;
 
+	*shft = 0;
 	if (*str == '0')
 		return (false);
-	*shft = 0;
+	if (*str == '*')
+	{
+		*val = va_arg(*arg_list, int);
+		(*shft)++;
+		return (true);
+	}
 	get = 0;
 	while (ft_isdigit(*(str + *shft)))
 	{
@@ -90,7 +96,7 @@ static bool	extract_specifier(const char *str, t_mask *mask)
 }
 
 //Marshals the fromat string into a structure.
-bool	ft_marshal_format(const char *frmt_str, t_mask *mask)
+bool	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list)
 {
 	int	shft;
 	int	add;
@@ -100,20 +106,20 @@ bool	ft_marshal_format(const char *frmt_str, t_mask *mask)
 	{
 		if (extract_flag(frmt_str + shft, mask))
 			shft++;
-		else if (extract_val(frmt_str + shft, &add, &(mask->width)))
+		else if (extract_val(frmt_str + shft, &add, arg_list, &(mask->width)))
 			shft += add;
 		else if (*(frmt_str + shft) == '.')
 		{
 			shft++;
-			extract_val(frmt_str + shft, &add, &(mask->precision));
+			extract_val(frmt_str + shft, &add, arg_list, &(mask->precision));
 			shft += add;
 		}
 		else if (extract_length(frmt_str + shft, &add, mask))
 			shft += add;
 		else if (extract_specifier(frmt_str + shft, mask))
-		{
 			return (true);
-		}
+		else
+			return (false);
 	}
 	return (false);
 }

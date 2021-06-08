@@ -29,10 +29,19 @@ int	print_till_percent(const char *str, int fd)
 	return (shft);
 }
 
+void	ft_print_caller(t_mask *mask, va_list *arg_list, int fd)
+{
+	(void) *mask;
+	(void) arg_list;
+	(void) fd;
+	return ;
+}
+
 //Tries to find a percent sign and then call 
 //a printing function and a marshaler.
 //Otherwise, simply prints out the content.
-int	fstr_streamline(t_mask *mask, const char *frmt_str, int fd)
+int	fstr_streamline(
+	t_mask *mask, const char *frmt_str, va_list *arg_list, int fd)
 {
 	int	curr_pos;
 	int	prev_pos;
@@ -45,23 +54,24 @@ int	fstr_streamline(t_mask *mask, const char *frmt_str, int fd)
 		if (*(frmt_str + curr_pos) == '%')
 		{
 			init_mask(mask);
-			ft_marshal_format(frmt_str + curr_pos, mask);
+			ft_marshal_format(frmt_str + curr_pos, mask, arg_list);
+			//ft_print_caller(mask, arg_list, fd);
 		}
 		prev_pos = curr_pos;
 	}
 	return (0);
 }
 
-int	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
+int		ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
 {
 	t_mask fstr_wrpr;
 
 	(void) arg_list;
-	fstr_streamline(&fstr_wrpr, frmt_str, fd);
+	fstr_streamline(&fstr_wrpr, frmt_str, arg_list, fd);
 	return (0);
 }
 
-int ft_printf(const char *frmt_str, ...)
+int 	ft_printf(const char *frmt_str, ...)
 {
 	int ret;
 
