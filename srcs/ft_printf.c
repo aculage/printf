@@ -45,6 +45,7 @@ int	fstr_streamline(
 {
 	int	curr_pos;
 	int	prev_pos;
+	int	shft;
 
 	prev_pos = 0;
 	curr_pos = 0;
@@ -54,24 +55,30 @@ int	fstr_streamline(
 		if (*(frmt_str + curr_pos) == '%')
 		{
 			init_mask(mask);
-			ft_marshal_format(frmt_str + curr_pos, mask, arg_list);
-			//ft_print_caller(mask, arg_list, fd);
+			shft = ft_marshal_format(frmt_str + curr_pos, mask, arg_list);
+			if (shft > 0)
+			{
+				curr_pos += shft;
+				ft_print_caller(mask, arg_list, fd);
+			}
+			else
+				return (0);
 		}
 		prev_pos = curr_pos;
 	}
 	return (0);
 }
 
-int		ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
+int	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
 {
-	t_mask fstr_wrpr;
+	t_mask	fstr_wrpr;
 
 	(void) arg_list;
 	fstr_streamline(&fstr_wrpr, frmt_str, arg_list, fd);
 	return (0);
 }
 
-int 	ft_printf(const char *frmt_str, ...)
+int ft_printf(const char *frmt_str, ...)
 {
 	int ret;
 

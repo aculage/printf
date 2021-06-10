@@ -1,9 +1,9 @@
 //CONVERSIONS
-//	c	->	symbol(char)
+//	c	->	symbol(char) [%.1s]
 //	s	->	c-string
 //	p	->	pointer [%#lx] or [%#x]
-//	d	->	signed integer
-//	i	->	signed integer
+//	d	->	signed integer 
+//	i	->	signed integer [%d]
 //	u	->	unsigned integer
 //	x	->	unsigned hex (lowercase)
 //	X	->	unsigned hex (UPPERCASE)

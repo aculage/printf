@@ -6,7 +6,7 @@ int main()
     int a;
     
     a = 121212;
-    printf("%-12.5d", a);
-	ft_printf("%-*.*d", 5, 10, a);	
+    printf("%--*.*d",5, 10,  a);
+	ft_printf("%0*.*d", 5, 10, a);	
     return 0;
 }

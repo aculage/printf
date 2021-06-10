@@ -9,6 +9,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <limits.h>
+# define ASCII_MAX 128
 
 typedef struct s_wrapper
 {
@@ -42,11 +43,12 @@ typedef struct s_mask
 	t_length	length;
 }				t_mask;
 
+typedef void	(*t_printfn) (t_mask *mask, va_list *arg, int fd);
 int ft_printf(const char *, ...);
 
 int ft_printcontent(const char *, int, int);
 
-bool	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list);
+int	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list);
 
 void	init_mask(t_mask *mask);
 #endif
