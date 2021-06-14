@@ -13,8 +13,7 @@
 
 typedef struct s_wrapper
 {
-	intmax_t	f_sym_amnt;
-	intmax_t	b_sym_amnt;
+	intmax_t	sym_amnt;
 	char		padding_sym;
 	char		sign[2];
 }				t_wrapper;
@@ -44,6 +43,7 @@ typedef struct s_mask
 }				t_mask;
 
 typedef void	(*t_printfn) (t_mask *mask, va_list *arg, int fd);
+
 int ft_printf(const char *, ...);
 
 int ft_printcontent(const char *, int, int);
