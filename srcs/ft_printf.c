@@ -55,10 +55,6 @@ int	fstr_streamline(
 		if (*(frmt_str + curr_pos) == '%')
 		{
 			init_mask(mask);
-<<<<<<< HEAD
-			ft_marshal_format(frmt_str + curr_pos, mask, arg_list);
-			ft_print_caller(mask, arg_list, fd);
-=======
 			shft = ft_marshal_format(frmt_str + curr_pos, mask, arg_list);
 			if (shft > 0)
 			{
@@ -67,7 +63,6 @@ int	fstr_streamline(
 			}
 			else
 				return (0);
->>>>>>> 9c24006f9d182b2f13992843b097c54ef4f3ec13
 		}
 		prev_pos = curr_pos;
 	}

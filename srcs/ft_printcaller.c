@@ -31,6 +31,7 @@ t_printfn	get_print_fn(t_mask *mask)
 		['u'] = ft_print_unsigned,
 		['%'] = ft_print_string,
 	};
+
 	return (funcs[mask->specifier]);
 }
 
@@ -40,5 +41,5 @@ int	ft_print_caller(t_mask *mask, va_list *arg_list, int fd)
 
 	ft_polymorph(mask);
 	lcl = get_print_fn(mask);
-	return (lcl())
+	return (lcl(mask, arg_list, fd));
 }
