@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "ft_printf.h"
-#include "libft.h"
 #include <stdarg.h>
+#include "ft_supportive.h"
 
 //prints symbols from str up to bound or up to strlen(str)
 int	ft_printcontent(const char *str, int bound, int fd)
@@ -27,14 +27,6 @@ int	print_till_percent(const char *str, int fd)
 	}
 	write(fd, str, shft);
 	return (shft);
-}
-
-void	ft_print_caller(t_mask *mask, va_list *arg_list, int fd)
-{
-	(void) *mask;
-	(void) arg_list;
-	(void) fd;
-	return ;
 }
 
 //Tries to find a percent sign and then call 
@@ -78,13 +70,13 @@ int	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
 	return (0);
 }
 
-int ft_printf(const char *frmt_str, ...)
+int	ft_printf(const char *frmt_str, ...)
 {
-	int ret;
-
+	int		ret;
 	va_list	arg_list;
+
 	va_start(arg_list, frmt_str);
 	ret = ft_fprintf(frmt_str, &arg_list, 1);
 	va_end(arg_list);
-	return(ret);
+	return (ret);
 }

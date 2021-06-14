@@ -1,5 +1,5 @@
 #include "ft_printf.h"
-#include "libft.h"
+#include "ft_supportive.h"
 
 //Extracts a decimal value.
 //This is used for precision or width.
@@ -9,7 +9,7 @@ static bool	extract_val(const char *str, int *shft, va_list *arg_list, int *val)
 
 	*shft = 0;
 	if (*str == '0')
-		return (false);
+		return (++*shft);
 	if (*str == '*')
 	{
 		*val = va_arg(*arg_list, int);
@@ -110,6 +110,7 @@ int	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list)
 			shft += add;
 		else if (*(frmt_str + shft) == '.')
 		{
+			mask->prec = true;
 			shft++;
 			extract_val(frmt_str + shft, &add, arg_list, &(mask->precision));
 			shft += add;

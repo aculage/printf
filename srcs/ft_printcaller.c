@@ -32,7 +32,7 @@ t_printfn	get_print_fn(t_mask *mask)
 		['%'] = ft_print_string,
 	};
 
-	return (funcs[mask->specifier]);
+	return (funcs[(unsigned int)mask->specifier]);
 }
 
 int	ft_print_caller(t_mask *mask, va_list *arg_list, int fd)

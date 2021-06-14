@@ -1,12 +1,21 @@
 #include <stdio.h>
-#include "ft_printf.h"
+#include "./hdrs/ft_printf.h"
 
-int main()
+int	main(void)
 {
-    int a;
-    
-    a = 121212;
-    printf("%--*.*d",5, 10,  a);
-	ft_printf("%0*.*d", 5, 10, a);	
-    return 0;
+	int	a;
+
+	a = 121212;
+	printf("%7d", -54);
+	printf("\n");
+	ft_printf("%7d", -54);
+	printf("\nUWOTM8\n");
+	printf("%07d", -54);
+	printf("\n");
+	ft_printf("%07d", -54);
+	printf("\nUWOTM8\n");
+	printf("%.7d", -54);
+	printf("\n");
+	ft_printf("%.7d", -54);
+	return (0);
 }

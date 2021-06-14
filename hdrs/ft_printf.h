@@ -16,6 +16,7 @@ typedef struct s_wrapper
 	intmax_t	sym_amnt;
 	char		padding_sym;
 	char		sign[2];
+	intmax_t	pr_sym_amnt;
 }				t_wrapper;
 
 typedef struct s_length
@@ -34,6 +35,7 @@ typedef struct s_mask
 	bool		print_sign : 1;
 	bool		uppercase : 1;
 	bool		is_negative : 1;
+	bool		prec : 1;
 	int32_t		width;
 	int32_t		precision;
 	int32_t		symbols_printed;
@@ -48,6 +50,8 @@ int		ft_printf(const char *frmt_str, ...);
 
 int		ft_marshal_format(
 			const char *frmt_str, t_mask *mask, va_list *arg_list);
+
+int		ft_print_caller(t_mask *mask, va_list *arg_list, int fd);
 
 void	init_mask(t_mask *mask);
 #endif

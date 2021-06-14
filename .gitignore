@@ -2,3 +2,7 @@ debug*
 .vscode
 *.o
 *.json
+pft/
+*.out
+*.a
+!.gitignore

@@ -2,9 +2,9 @@
 
 static void	init_wrapper(t_wrapper *wrapper)
 {
-	wrapper->b_sym_amnt = 0;
-	wrapper->f_sym_amnt = 0;
+	wrapper->sym_amnt = 0;
 	wrapper->padding_sym = ' ';
+	wrapper->pr_sym_amnt = 0;
 	wrapper->sign[0] = 0;
 	wrapper->sign[1] = 1;
 }
@@ -22,6 +22,8 @@ void	init_mask(t_mask *mask)
 	mask->alternative_mode = false;
 	mask->frnt_spc = false;
 	mask->left_align = false;
+	mask->print_sign = false;
+	mask->prec = false;
 	mask->symbols_printed = 0;
 	mask->width = 0;
 	mask->precision = 0;
