@@ -55,7 +55,7 @@ int	fstr_streamline(
 		{
 			init_mask(mask);
 			ft_marshal_format(frmt_str + curr_pos, mask, arg_list);
-			//ft_print_caller(mask, arg_list, fd);
+			ft_print_caller(mask, arg_list, fd);
 		}
 		prev_pos = curr_pos;
 	}
