@@ -96,7 +96,7 @@ static bool	extract_specifier(const char *str, t_mask *mask)
 }
 
 //Marshals the fromat string into a structure.
-bool	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list)
+int	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list)
 {
 	int	shft;
 	int	add;
@@ -117,9 +117,9 @@ bool	ft_marshal_format(const char *frmt_str, t_mask *mask, va_list *arg_list)
 		else if (extract_length(frmt_str + shft, &add, mask))
 			shft += add;
 		else if (extract_specifier(frmt_str + shft, mask))
-			return (true);
+			return (shft + 1);
 		else
-			return (false);
+			return (0);
 	}
-	return (false);
+	return (0);
 }

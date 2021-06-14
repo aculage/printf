@@ -1,10 +1,18 @@
 //CONVERSIONS
 //	c	->	symbol(char) [%.1s]
+<<<<<<< HEAD
 //	s	->	c-string [ini]
 //	p	->	pointer [%#lx] or [%#x]
 //	d	->	signed integer [ini]
 //	i	->	signed integer [%d]
 //	u	->	unsigned integer [%d][sign is nullified]
+=======
+//	s	->	c-string
+//	p	->	pointer [%#lx] or [%#x]
+//	d	->	signed integer 
+//	i	->	signed integer [%d]
+//	u	->	unsigned integer
+>>>>>>> 9c24006f9d182b2f13992843b097c54ef4f3ec13
 //	x	->	unsigned hex (lowercase)
 //	X	->	unsigned hex (UPPERCASE)
 //--BONUS--
