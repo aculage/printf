@@ -8,11 +8,3 @@ int	ft_print_hex(t_mask *mask, va_list *arg, int fd)
 	(void) fd;
 	return (0);
 }
-
-int	ft_print_string(t_mask *mask, va_list *arg, int fd)
-{
-	(void) mask;
-	(void) arg;
-	(void) fd;
-	return (0);
-}

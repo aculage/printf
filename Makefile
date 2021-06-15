@@ -8,6 +8,7 @@ SRCS_PRINTF		=	ft_init.c \
 					ft_printfunc.c \
 					ft_printint.c \
 					ft_printuint.c \
+					ft_printstr.c \
 					ft_supportive.c
 SRCS_PRINTF_AGG =	$(addprefix $(SRCS_PRINTF_DIR), $(SRCS_PRINTF))
 OBJS_PRINTF		=	$(SRCS_PRINTF_AGG:.c=.o)

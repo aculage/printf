@@ -5,11 +5,10 @@
 //This is used for precision or width.
 static bool	extract_val(const char *str, int *shft, va_list *arg_list, int *val)
 {
-	int	get;
+	int		get;
+	bool	set;
 
 	*shft = 0;
-	if (*str == '0')
-		return (++*shft);
 	if (*str == '*')
 	{
 		*val = va_arg(*arg_list, int);
@@ -17,12 +16,14 @@ static bool	extract_val(const char *str, int *shft, va_list *arg_list, int *val)
 		return (true);
 	}
 	get = 0;
+	set = false;
 	while (ft_isdigit(*(str + *shft)))
 	{
+		set = true;
 		get = get * 10 + (*(str + *shft) - '0');
 		(*shft)++;
 	}
-	if (get != 0)
+	if (set)
 	{
 		*val = get;
 		return (true);

@@ -3,19 +3,11 @@
 
 int	main(void)
 {
-	int	a;
+	char	*a;
 
-	a = 121212;
-	printf("%7d", -54);
+	a = "abc";
+	printf("%3.s", NULL);
 	printf("\n");
-	ft_printf("%7d", -54);
-	printf("\nUWOTM8\n");
-	printf("%07d", -54);
-	printf("\n");
-	ft_printf("%07d", -54);
-	printf("\nUWOTM8\n");
-	printf("%.7d", -54);
-	printf("\n");
-	ft_printf("%.7d", -54);
+	ft_printf("%3.s", NULL);
 	return (0);
 }
