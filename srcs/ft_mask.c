@@ -24,11 +24,8 @@ static bool	extract_val(const char *str, int *shft, va_list *arg_list, int *val)
 		(*shft)++;
 	}
 	if (set)
-	{
 		*val = get;
-		return (true);
-	}
-	return (false);
+	return (set);
 }
 
 //Extracts a flag.
@@ -79,10 +76,17 @@ static bool	extract_length(const char *str, int *shft, t_mask *mask)
 	return (false);
 }
 
+//This functions also checks if width is less than 0
 static bool	extract_specifier(const char *str, t_mask *mask)
 {
 	char	*specs;
 
+	if (mask->width < 0)
+	{
+		mask->left_align = true;
+		mask->wrapper.padding_sym = ' ';
+		mask->width *= -1;
+	}
 	specs = "cspdiuxXn%";
 	if (ft_strchr(specs, *str))
 	{

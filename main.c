@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 #include "./hdrs/ft_printf.h"
 
 int	main(void)
@@ -6,8 +7,9 @@ int	main(void)
 	char	*a;
 
 	a = "abc";
-	printf("%3.s", NULL);
+	int g = printf(" *%-*.*x* *%*.*x* ", 4, 5, 10, 10, 21, -10);
 	printf("\n");
-	ft_printf("%3.s", NULL);
+	int z = ft_printf(" *%-*.*x* *%*.*x* ", 4, 5, 10, 10, 21, -10);
+	(void) z;
 	return (0);
 }

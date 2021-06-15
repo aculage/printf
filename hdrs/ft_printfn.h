@@ -10,6 +10,10 @@ int	ft_print_integer(t_mask *mask, va_list *arg, int fd);
 
 int	ft_print_unsigned(t_mask *mask, va_list *arg, int fd);
 
-int	ft_print_precent(t_mask *mask, va_list *arg, int fd);
+int	ft_print_percent(t_mask *mask, va_list *arg, int fd);
+
+int	ft_print_char(t_mask *mask, va_list *arg, int fd);
+
+int	ft_print_pointer(t_mask *mask, va_list *arg, int fd);
 
 #endif

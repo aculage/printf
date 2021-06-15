@@ -3,20 +3,7 @@
 #include <stdarg.h>
 #include "ft_supportive.h"
 
-//prints symbols from str up to bound or up to strlen(str)
-int	ft_printcontent(const char *str, int bound, int fd)
-{
-	int	amnt;
-
-	if (ft_strlen(str) < bound)
-		amnt = ft_strlen(str);
-	else
-		amnt = bound;
-	write (fd, str, amnt);
-	return (amnt);
-}
-
-int	print_till_percent(const char *str, int fd)
+int	print_till_percent(t_mask *mask, const char *str, int fd)
 {
 	int	shft;
 
@@ -25,6 +12,7 @@ int	print_till_percent(const char *str, int fd)
 	{
 		shft++;
 	}
+	mask->symbols_printed += shft;
 	write(fd, str, shft);
 	return (shft);
 }
@@ -43,7 +31,7 @@ int	fstr_streamline(
 	curr_pos = 0;
 	while (*(frmt_str + curr_pos) != 0)
 	{
-		curr_pos = prev_pos + print_till_percent(frmt_str + prev_pos, fd);
+		curr_pos = prev_pos + print_till_percent(mask, frmt_str + prev_pos, fd);
 		if (*(frmt_str + curr_pos) == '%')
 		{
 			init_mask(mask);
@@ -61,13 +49,14 @@ int	fstr_streamline(
 	return (0);
 }
 
-int	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
+int32_t	ft_fprintf(const char *frmt_str, va_list *arg_list, int fd)
 {
 	t_mask	fstr_wrpr;
 
 	(void) arg_list;
+	fstr_wrpr.symbols_printed = 0;
 	fstr_streamline(&fstr_wrpr, frmt_str, arg_list, fd);
-	return (0);
+	return (fstr_wrpr.symbols_printed);
 }
 
 int	ft_printf(const char *frmt_str, ...)

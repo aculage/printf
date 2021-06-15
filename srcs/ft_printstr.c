@@ -51,14 +51,13 @@ int	ft_print_string(t_mask *mask, va_list *arg, int fd)
 		mask->wrapper.sym_amnt = mask->width - mask->precision;
 	}
 	else
-	{
 		mask->wrapper.sym_amnt = mask->width - len;
-	}
 	ft_lclprint(mask, var, len, fd);
-	if (mask->precision > len)
-		return (mask->precision);
-	else if (len > mask->width)
-		return (len);
+	if (mask->width > mask->precision && mask->width > len)
+		mask->symbols_printed += mask->width;
+	else if (mask->precision > 0)
+		mask->symbols_printed += ((ft_min(mask->precision, len)));
 	else
-		return (mask->width);
+		mask->symbols_printed += len;
+	return (1);
 }

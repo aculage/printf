@@ -45,7 +45,7 @@ static void	ft_wrap_fd(t_mask *mask, int fd, bool flag)
 	cnt = 0;
 	if (flag)
 	{
-		if (mask->prec)
+		if (mask->prec || mask->left_align)
 			mask->wrapper.padding_sym = ' ';
 		while (cnt < mask->wrapper.sym_amnt)
 		{
@@ -55,6 +55,8 @@ static void	ft_wrap_fd(t_mask *mask, int fd, bool flag)
 	}
 	if (!flag)
 	{
+		if (mask->prec)
+			mask->wrapper.padding_sym = ' ';
 		while (cnt < mask->wrapper.pr_sym_amnt)
 		{
 			write(fd, "0", 1);
@@ -110,10 +112,9 @@ int	ft_print_integer(t_mask *mask, va_list *arg, int fd)
 	else
 		mask->wrapper.sym_amnt = mask->width - len - sgn;
 	ft_lclprint(mask, var, fd);
-	if (mask->precision > len)
-		return (mask->precision);
-	else if (len > mask->width)
-		return (len);
+	if (mask->width > (ft_max(mask->precision, len) + sgn))
+		mask->symbols_printed += mask->width;
 	else
-		return (mask->width);
+		mask->symbols_printed += ((ft_max(mask->precision, len) + sgn));
+	return (1);
 }

@@ -5,4 +5,4 @@ debug*
 pft/
 *.out
 *.a
-!.gitignore
+printfTester/*

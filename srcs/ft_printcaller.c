@@ -3,16 +3,6 @@
 
 void	ft_polymorph(t_mask *mask)
 {
-	if (mask->specifier == 'c')
-	{
-		mask->precision = 1;
-		mask->specifier = 's';
-	}
-	if (mask->specifier == 'p')
-	{
-		mask->specifier = 'x';
-		mask->alternative_mode = true;
-	}
 	if (mask->specifier == 'X')
 	{
 		mask->uppercase = true;
@@ -29,7 +19,10 @@ t_printfn	get_print_fn(t_mask *mask)
 		['x'] = ft_print_hex,
 		['s'] = ft_print_string,
 		['u'] = ft_print_unsigned,
-		['%'] = ft_print_string,
+		['%'] = ft_print_percent,
+		['c'] = ft_print_char,
+		['p'] = ft_print_pointer,
+
 	};
 
 	return (funcs[(unsigned int)mask->specifier]);

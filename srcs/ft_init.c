@@ -24,7 +24,6 @@ void	init_mask(t_mask *mask)
 	mask->left_align = false;
 	mask->print_sign = false;
 	mask->prec = false;
-	mask->symbols_printed = 0;
 	mask->width = 0;
 	mask->precision = 0;
 	mask->specifier = 0;
