@@ -8,7 +8,7 @@ int		ft_isdigit(int ch);
 
 int		ft_strlen(const char *str);
 
-char	*ft_strchr( const char *string, int symbol );
+char	*ft_strchr( const char *string, int symbol);
 
 void	ft_putnbr_base_fd(unsigned long long nbr, char *base, int fd);
 
